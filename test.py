@@ -4,10 +4,10 @@ from models.IntentModel import IntentModel
 p = Preprocess(word2index_dic='train_tools/dict/chatbot_dict.bin',
                userdic='utils/user_dic.tsv')
 
-intent_level = input("원하는 감정 분류 모델 선택('1' 또는 '2' 입력): ")
+intent_level = int(input("원하는 감정 분류 모델 선택('1' 또는 '2' 입력): "))
 
-model_name = 'models/intent_model_' + intent_level + '.h5'
-intent = IntentModel(model_name=model_name, proprocess=p, intent_level = int(intent_level))
+model_name = 'models/intent_model_' + str(intent_level) + '.h5'
+intent = IntentModel(model_name=model_name, proprocess=p, intent_level = intent_level)
 
 print("선택한 모델의 감정 레이블 : ", intent.labels)
 
@@ -17,5 +17,5 @@ while True:
     if query == '1':
         break
 
-    c = intent.predict_class(query)
+    c = intent.predict_class(query, intent_level)
     print(intent.labels[c])

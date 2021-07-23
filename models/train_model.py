@@ -24,7 +24,7 @@ def read_data(intent_level):
     data = pd.read_csv(train_file, delimiter=',')
     queries = data['query'].tolist()
     intents = data['intent'].tolist()
-
+    
     p = Preprocess(word2index_dic='train_tools/dict/chatbot_dict.bin',
             userdic='utils/user_dic.tsv')
 
@@ -66,7 +66,6 @@ def create_model(vocab_size, intent_level):
     EMB_SIZE = 128
     VOCAB_SIZE = vocab_size + 1 #전체 단어 개수
     label_size = 3 if intent_level==1 else 7
-    print(label_size)
 
     # CNN 모델 정의  ○4
     input_layer = Input(shape=(MAX_SEQ_LEN[intent_level],))

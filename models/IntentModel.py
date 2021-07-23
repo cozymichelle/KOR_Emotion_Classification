@@ -1,3 +1,4 @@
+import sys
 import tensorflow as tf
 from tensorflow.keras.models import Model, load_model
 from tensorflow.keras import preprocessing
@@ -25,7 +26,7 @@ class IntentModel:
 
 
     # 의도 클래스 예측
-    def predict_class(self, query):
+    def predict_class(self, query, intent_level):
         # 형태소 분석
         pos = self.p.pos(query)
 
